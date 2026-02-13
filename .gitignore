@@ -120,4 +120,17 @@ run/
 curseforge_api_key.txt
 mod_update_api_key.txt
 modrinth_token.txt
+
+# Ignore Eclipse Generated stuff
 runs/
+.project
+common/.classpath
+/.settings
+/common/.settings
+/common/bin
+fabric/.classpath
+forge/.classpath
+/forge/bin
+/fabric/bin
+/fabric/.settings
+/forge/.settings
