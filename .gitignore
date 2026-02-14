@@ -134,3 +134,4 @@ forge/.classpath
 /fabric/bin
 /fabric/.settings
 /forge/.settings
+*.launch

@@ -278,11 +278,23 @@ public class SoundPhysics {
         float sendCutoff2 = 1F;
         float sendCutoff3 = 1F;
         
-        boolean isBucket = sound.toString().equals("minecraft:item.bucket.empty");
-        boolean isWater = sound.toString().equals("minecraft:block.water.ambient");
+        // Sounds that shouldn't be muffled when player isn't under water
         
-        // Filter if player/sound is under water except for bucket/water sound when player is not under water
-        if (minecraft.player.isUnderWater() || (sourceIsUnderwater && !(isBucket || isWater))) {
+        String[] exemptions = {
+        		"minecraft:item\\.bucket\\.empty",
+        		"minecraft:block\\.water\\.ambient",
+        		"dsurround:waterfall\\.\\d"
+        };
+
+        boolean isExempt = false;
+        for(String entry: exemptions) {
+        	if(sound.toString().matches(entry)) {
+        		isExempt = true;
+        		break;
+        	}
+        }
+        
+        if (minecraft.player.isUnderWater() || (sourceIsUnderwater && !isExempt)) {
             directCutoff *= 1F - SoundPhysicsMod.CONFIG.underwaterFilter.get();
         }
 
