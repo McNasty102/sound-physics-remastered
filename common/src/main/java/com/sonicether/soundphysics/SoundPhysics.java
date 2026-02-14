@@ -283,7 +283,16 @@ public class SoundPhysics {
         String[] exemptions = {
         		"minecraft:item\\.bucket\\.empty",
         		"minecraft:block\\.water\\.ambient",
-        		"dsurround:waterfall\\.\\d"
+        		"minecraft:entity\\.player\\.swim",
+        		"minecraft:entity\\.player\\.splash",
+        		"minecraft:entity\\.axolotl\\.splash",
+        		"minecraft:entity\\.dolphin\\.splash",
+        		"minecraft:entity\\.generic\\.splash",
+        		"minecraft:entity\\.hostile\\.splash",
+        		"minecraft:entity\\.fishing_bobber\\.splash",
+        		"minecraft:entity\\\\.boat\\\\.paddle_water",
+        		"dsurround:waterfall\\.\\d",
+        		"soundofrain:rain_water"
         };
 
         boolean isExempt = false;
