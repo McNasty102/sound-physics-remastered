@@ -277,8 +277,12 @@ public class SoundPhysics {
         float sendCutoff1 = 1F;
         float sendCutoff2 = 1F;
         float sendCutoff3 = 1F;
-
-        if (minecraft.player.isUnderWater() || sourceIsUnderwater) {
+        
+        boolean isBucket = sound.toString().equals("minecraft:item.bucket.empty");
+        boolean isWater = sound.toString().equals("minecraft:block.water.ambient");
+        
+        // Filter if player/sound is under water except for bucket/water sound when player is not under water
+        if (minecraft.player.isUnderWater() || (sourceIsUnderwater && !(isBucket || isWater))) {
             directCutoff *= 1F - SoundPhysicsMod.CONFIG.underwaterFilter.get();
         }
 
