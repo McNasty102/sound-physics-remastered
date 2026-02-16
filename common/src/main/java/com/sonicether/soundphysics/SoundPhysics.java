@@ -291,7 +291,6 @@ public class SoundPhysics {
         		"minecraft:entity\\.hostile\\.splash",
         		"minecraft:entity\\.fishing_bobber\\.splash",
         		"minecraft:entity\\.boat\\.paddle_water",
-        		"dsurround:waterfall\\.\\d",
         		"soundofrain:rain_water"
         };
         // Reusing the soundFluidState variable to check if we are on the "surface"
@@ -300,6 +299,11 @@ public class SoundPhysics {
         
         boolean isExempt = false;
         for(String entry: exemptions) {
+        	// Special case for Dynamic Surrounding's Waterfall, sound origin is the water where a waterfall lands
+        	if(sound.toString().matches("dsurround:waterfall\\.\\d")) {
+        		isExempt = true;
+        		break;
+        	}
         	if(sound.toString().matches(entry) && isWaterSurface) {
         		isExempt = true;
         		break;
