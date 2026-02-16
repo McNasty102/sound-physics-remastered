@@ -290,14 +290,17 @@ public class SoundPhysics {
         		"minecraft:entity\\.generic\\.splash",
         		"minecraft:entity\\.hostile\\.splash",
         		"minecraft:entity\\.fishing_bobber\\.splash",
-        		"minecraft:entity\\\\.boat\\\\.paddle_water",
+        		"minecraft:entity\\.boat\\.paddle_water",
         		"dsurround:waterfall\\.\\d",
         		"soundofrain:rain_water"
         };
-
+        // Reusing the soundFluidState variable to check if we are on the "surface"
+        soundFluidState = getLevelProxy().getFluidState(soundBlockPos.above());
+        boolean isWaterSurface = !soundFluidState.is(FluidTags.WATER);
+        
         boolean isExempt = false;
         for(String entry: exemptions) {
-        	if(sound.toString().matches(entry)) {
+        	if(sound.toString().matches(entry) && isWaterSurface) {
         		isExempt = true;
         		break;
         	}
